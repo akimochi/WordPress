@@ -2,11 +2,12 @@
   <head>
     <!-- ライブラリはWordPressのheader.phgに記載 -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+    <!-- CSSの修正はWordPressのstyle.cssの一番下に記載 -->
+    <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <!-- 実際のjQueryの処理はWordPressの「/wp-content/themes/stingerplus2/js/akimochiblog_calendar.js」に記載 -->
     <script src="akimochiblog_calendar.js"></script>
-    <!-- CSSの修正はstyle.cssの一番下に記載 -->
   </head>
   <body>
     <!-- hタグの修正はWordPressの外観　→ カスタマイズから行う -->
@@ -15,6 +16,64 @@
     <input type="text" id="calendar_basics3" />
     <input type="text" id="calendar_basics4" />
     <input type="text" id="calendar_basics5" />
-    <input type="text" id="calendar_basics6" />
+    <input type="text" id="calendar_basics6" /><br />
+    <input type="text" id="calendar_advanced1" />
+    <input type="text" id="calendar_advanced2" />
+    <input type="text" id="calendar_advanced3" />
+    <input type="text" id="calendar_advanced4" />
+    <div>
+      <select id="calendar_y"></select>
+      年　
+      <select id="calendar_m">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+      月　
+      <select id="calendar_d">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+        <option>26</option>
+        <option>27</option>
+        <option>28</option>
+        <option>29</option>
+        <option>30</option>
+        <option>31</option>
+      </select>
+      日
+    </div>
+    <input type="text" id="calendar_advanced5" />
   </body>
 </html>

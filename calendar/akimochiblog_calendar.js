@@ -35,28 +35,56 @@ $(function () {
     buttonImageOnly: true, // カレンダーアイコン画像のみ表示
     showOn: "button", // カレンダーアイコンクリックでカレンダーを表示
   });
+
+  // １. 現在から1ヶ月後までを選択できるようにする
+  let calendarDateFrom = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+  $("#calendar_advanced1").datepicker({
+    dateFormat: "yy/mm/dd",
+    maxDate: calendarDateFrom,
+  });
+
+  // ２. 現在から3ヶ月前後までを選択できるようにする
+  let calendarDateTo3month = new Date(today.getFullYear(), today.getMonth() - 3, 1);
+  let calendarDateFrom3month = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+
+  $("#calendar_advanced2").datepicker({
+    dateFormat: "yy/mm/dd",
+    minDate: calendarDateTo3month,
+    maxDate: calendarDateFrom3month,
+  });
+
+  //３. カレンダーの土日の色を変更する
+
+  //４. カレンダーで日付を選択したらプルダウンにセットする
+  let calendarDateNow = new Date(today.getFullYear(), today.getMonth(), 1);
+  let optionHtml = "";
+  for (let year = calendarDateNow.getFullYear(); year <= calendarDateNow.getFullYear() + 1; year++) {
+    optionHtml += '<option value="' + year + '">';
+    optionHtml += year;
+    optionHtml += "</option>";
+  }
+  $("#calendar_y").append(optionHtml);
+
+  $("#calendar_y").val(calendarDateNow.getFullYear());
+  $("#calendar_m").val(calendarDateNow.getMonth() + 1);
+  $("#calendar_d").val(calendarDateNow.getDate());
+
+  $("#calendar_advanced4").datepicker({
+    dateFormat: "yy/mm/dd",
+    changeYear: false,
+    beforeShow: function (input, inst) {
+      let y = $("#calendar_y").val();
+      let m = $("#calendar_m").val();
+      let d = $("#calendar_d").val();
+      $(this).datepicker("setDate", new Date(y, m - 1, d));
+    },
+    onSelect: function (dateText, inst) {
+      let dates = dateText.split("/");
+      $("#calendar_y").val(parseInt(dates[0]));
+      $("#calendar_m").val(parseInt(dates[1]));
+      $("#calendar_d").val(parseInt(dates[2]));
+      $("#calendar_y").change();
+    },
+  });
 });
-
-// カレンダーの選択範囲を制限する
-// let calendarDateMin = new Date(2021, 12 - 1, 1);
-//let addMonth = 2;
-
-//$("#calendar").datepicker({
-// dateFormat: "yy年mm月dd日",
-//changeYear: false,
-//minDate: calendarDateMin,
-//maxDate: calendarDateMax,
-//beforeShow: function (input, inst) {
-// let y = $("#cont2 select[name=calendar_y]").val();
-// let m = $("#cont2 select[name=calendar_m]").val();
-// let d = $("#cont2 select[name=calendar_d]").val();
-// $(this).datepicker("setDate", new Date(y, m - 1, d));
-//},
-//onSelect: function (dateText, inst) {
-// let dates = dateText.split("/");
-// $("#cont2 select[name=calendar_y]").val(parseInt(dates[0]));
-// $("#cont2 select[name=calendar_m]").val(parseInt(dates[1]));
-// $("#cont2 select[name=calendar_d]").val(parseInt(dates[2]));
-// $("#cont2 select[name=calendar_y]").change();
-//},
-// });
